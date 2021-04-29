@@ -1,6 +1,6 @@
 import "./styles.css";
 import React, { useRef, useState } from "react";
-import UserList4 from "./UserList4";
+import UserList6 from "./UserList6";
 import CreateUser from "./CreateUser";
 
 export default function App1() {
@@ -62,7 +62,7 @@ export default function App1() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList4 users={users} onRemove={onRemove} onToggle={onToggle} />
+      <UserList6 users={users} onRemove={onRemove} onToggle={onToggle} />
     </div>
   );
 }
