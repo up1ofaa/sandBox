@@ -19,9 +19,9 @@ export default function App1() {
   }; //input 에서 입력시 입력값 inputs 객체에 저장
 
   const [users, setUsers] = useState([
-    { id: 1, username: "riri", email: "riri@kaka.com" },
-    { id: 2, username: "lool", email: "lool@kaka.com" },
-    { id: 3, username: "kara", email: "kara@kaka.com" }
+    { id: 1, username: "riri", email: "riri@kaka.com", active: true },
+    { id: 2, username: "lool", email: "lool@kaka.com", active: false },
+    { id: 3, username: "kara", email: "kara@kaka.com", active: false }
   ]);
 
   const nextId = useRef(4);
@@ -46,6 +46,14 @@ export default function App1() {
     setUsers(users.filter((user) => user.id !== id));
   };
 
+  const onToggle = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
+  };
+
   return (
     <div className="App1">
       <CreateUser
@@ -54,7 +62,7 @@ export default function App1() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList4 users={users} onRemove={onRemove} />
+      <UserList4 users={users} onRemove={onRemove} onToggle={onToggle} />
     </div>
   );
 }
