@@ -18,12 +18,14 @@ export default function App4() {
   const onChange = useCallback(
     (e) => {
       const { name, value } = e.target;
-      setInputs({
+      setInputs((inputs) => ({
+        //deps 배열에 inputs 비워두기
+        //userCallback 사용하면서 deps 배열 비울려면
         ...inputs, //inputs객체 복사
         [name]: value //inputs객체 내의 해당 항목 값 세팅
-      });
+      }));
     },
-    [inputs] //inputs값이 변할때만 랜더링시 onChange 함수 호출
+    [] //inputs값이 변할때만 랜더링시 onChange 함수 호출
   ); //input 에서 입력시 입력값 inputs 객체에 저장
 
   const [users, setUsers] = useState([
@@ -39,7 +41,9 @@ export default function App4() {
       username,
       email
     }; //onchange로 값 변경된 항목 포함
-    setUsers([...users, user]); //기존users 객체에 추가된 user객체포함
+    setUsers((users) => [...users, user]); //기존users 객체에 추가된 user객체포함
+    // deps배열에 users 없애기
+    //userCallback 사용하면서 deps 배열 비울려면
     setInputs({
       username: "",
       email: ""
@@ -50,11 +54,13 @@ export default function App4() {
   const onRemove = useCallback((id) => {
     //user.id 가 파리미터로 일치하지 않는 원소만 추출해서 새로운 배열 만듬
     //=user.id가 id인것을 제거함
-    setUsers(users.filter((user) => user.id !== id));
+    setUsers((users) => users.filter((user) => user.id !== id));
+    // deps배열에 users 없애기
+    //userCallback 사용하면서 deps 배열 비울려면
   }, []);
 
   const onToggle = useCallback((id) => {
-    setUsers(
+    setUsers((users) =>
       users.map((user) =>
         user.id === id ? { ...user, active: !user.active } : user
       )
