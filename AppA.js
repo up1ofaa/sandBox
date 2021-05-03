@@ -75,6 +75,11 @@ function reducer(state, action) {
 
 export default function AppA() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  //state 앞으로 상태 객체
+  //dispatch로 조건에 따른 (type) state를 설정
+  //reducer는 dispatch로 발송된 조건에 따른 state 반환함수
+  //initialState는 state 객체 초기값 세팅
+
   const nextId = useRef(4);
   const { users } = state;
   const { username, email } = state.inputs;
