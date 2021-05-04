@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function User({ user, i, onToggle, onRemove }) {
-  return (
+const User = React.memo(function ({ user, onToggle, onRemove }) {
+  useEffect(() => {
+    console.log("컴포넌트가 화면에 나타날때");
+    return () => {
+      //console.log('컴포넌트가 화면에서 사라질때');
+    };
+  }, [user]);
+
+  /* useEffect(() => {
+    console.log(user);
+  });
+*/ return (
     <div>
       <b
         style={{
@@ -16,7 +26,7 @@ function User({ user, i, onToggle, onRemove }) {
       <button onClick={() => onRemove(user.id)}>삭제</button>
     </div>
   );
-}
+});
 
 function UserListA({ users, onToggle, onRemove }) {
   return (
@@ -33,4 +43,4 @@ function UserListA({ users, onToggle, onRemove }) {
   );
 }
 
-export default UserListA;
+export default React.memo(UserListA);

@@ -120,7 +120,8 @@ export default function AppA() {
   }, []);
 
   const count = useMemo(() => countActiveUser(users), [users]);
-
+  //useMemo를 사용하는 이유 랜더링시, 의존값이 변할때만 함수사용, 아니면 재사용
+  //const count = countActiveUser(users);
   return (
     <div className="AppA">
       <CreateUserA
@@ -134,3 +135,11 @@ export default function AppA() {
     </div>
   );
 }
+/*
+useMemo는 특정 결과값을 재사용할때 사용하는 반면,
+useCallback은 특정 함수를 새로 만들지 않고 재사용하고 싶을 때 사용한다
+useCallback 사용시 사용하는 상태 혹은 props가 있다면
+꼭 deps 배열안에 포함시켜야한다.
+
+
+*/
