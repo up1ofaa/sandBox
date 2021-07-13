@@ -1,11 +1,21 @@
 import React from "react";
 
-function CreateUserB({}) {
+function CreateUserB({ username, email, onChange, onCreate }) {
   return (
     <div>
-      <input />
-      <input />
-      <button></button>
+      <input
+        name="username"
+        value={username}
+        onChange={onChange}
+        placeholder="username"
+      />
+      <input
+        name="email"
+        value={email}
+        onChnage={onChange}
+        placeholder="email"
+      />
+      <button onClick={onCreate}>등록</button>
     </div>
   );
 }
