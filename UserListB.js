@@ -1,6 +1,6 @@
 import React from "react";
 
-function User({ key, user, onToggle, onRemove }) {
+function User({ user, onToggle, onRemove, key }) {
   return (
     <div>
       <b
@@ -20,14 +20,14 @@ function User({ key, user, onToggle, onRemove }) {
 function UserListB({ users, onToggle, onRemove }) {
   return (
     <div>
-      {users.map((user) => {
+      {users.map((user) => (
         <User
-          key={user.id}
           user={user}
           onToggle={onToggle}
           onRemove={onRemove}
-        />;
-      })}
+          key={user.id}
+        />
+      ))}
     </div>
   );
 }
